@@ -1,0 +1,187 @@
+Data:
+Data refers to raw facts and figures. It can be in the form of numbers, text, images, or any other format. 
+Data by itself is not meaningful, it becomes information when processed and organized.
+
+Information:
+Information is the result of processing and organizing data in a meaningful way. It provides context, relevance, and purpose, making it useful for decision-making.
+
+Database:
+A database is a structured collection of data that is organized (typically using tables with predefined columns and data types) and stored in a way that allows for efficient retrieval and manipulation.
+
+Database Management System (DBMS):
+A Database Management System is software that enables the creation, maintenance, and use of databases. It provides an interface for interacting with the database, ensuring data integrity, security, and efficient retrieval. Examples of DBMS include MySQL, Oracle, Microsoft SQL Server, and PostgreSQL.
+
+Database System:
+A Database System is a combination of a database and its DBMS along with hardware. It includes the database(stored data), DBMS(software that manages and provides access to that data.), and the hardware upon which this DBMS is installed or running.
+
+Applications (Use-Cases) of DBMS:
+Web Applications, Mobile Applications, E-commerce applications, Enterprise applications, Social networking Applications, Gaming Applications, Data science, Machine Learning etc
+
+
+
+History of Data (File-Based Storage):
+File-based storage or flat file storage, involves storing data in files on a file system. 
+
+Why not use file-based? / Limitations:
+
+Data Redundancy:
+In file storage, data redundancy can be a common issue. If the same data needs to be stored in multiple files, any updates or changes to that data may lead to inconsistencies.
+
+Limited Query Capabilities:
+Retrieving specific pieces of data often involves reading through entire files, which can be inefficient and time-consuming, especially as the volume of data increases.
+
+Data Isolation:
+Each file in a file storage system is typically independent, making it challenging to establish relationships or connections between different sets of data. This can hinder the ability to perform retrieve related information.
+
+Concurrency Issues:
+File systems may not handle concurrent access well, leading to potential conflicts when multiple users or processes attempt to access or modify the same file simultaneously. This lack of concurrency control can result in data inconsistencies.
+
+Limited Security Features:
+File systems may lack robust security features compared to DBMS. Implementing access controls, authentication, and encryption can be more challenging in a file storage environment.
+
+Scalability Challenges:
+File storage systems might face scalability challenges as the volume of data increases. Managing a large number of files can become unwieldy, and optimizing performance may become difficult.
+
+Data Integrity Concerns:
+Maintaining data integrity in file storage systems can be challenging. There is a higher risk of data corruption or inconsistencies, especially if updates are not managed carefully.
+
+Limited Support for Transactions:
+File storage systems may not provide built-in support for transactions, making it harder to ensure atomicity, consistency, isolation, and durability (ACID properties) in data operations.
+
+In summary, while file storage may be suitable for simple and small-scale applications, a DBMS offers a more robust, efficient, and secure solution for managing and accessing data, especially in environments with complex data relationships and a need for concurrent data access.
+
+
+Solution: DBMS Advantages:
+
+Transactions & ACID Properties: 
+ACID (Atomicity, Consistency, Isolation, Durability) represents a set of properties ensuring the reliability and consistency of database transactions by guaranteeing that they are atomic, maintain data consistency, operate in isolation, and endure system failures.
+
+Normalization:
+DBMS minimizes data redundancy through normalization techniques, reducing the chances of inconsistencies and making updates or changes more manageable.
+
+Data Integrity:
+DBMS enforces data integrity through constraints (e.g., unique keys, foreign keys, and check constraints). This ensures that the data in the database is accurate and consistent.
+
+Data Modeling & Relationships:
+DBMS allows the use of data models and schema definitions, providing a clear structure for the data. DBMS also supports the establishment of relationships between different tables (entities) using keys. This relational structure allows for more efficient querying and retrieval of related data compared to flat file storage.
+
+Concurrency Control:
+DBMS provides mechanisms for handling multiple users accessing the database simultaneously while maintaining consistency. This is essential for applications with concurrent user activity.
+
+Query Language:
+DBMS uses a standardized query language like SQL, making it easier to retrieve, update, and manipulate data. This simplifies the process of interacting with the stored information.
+
+Security:
+DBMS offers robust security features, including user authentication, authorization, and encryption. File systems may lack these built-in security measures, making it harder to control access to data.
+
+Backups:
+DBMS ensures durability by providing mechanisms like transaction logs and backups, making it more robust against data loss due to hardware failures, crashes, or other unforeseen events.
+
+Scalability:
+DBMS is designed to scale both vertically (adding more resources to a single server) and horizontally (distributing data across multiple servers). This scalability is often more challenging to achieve with file storage.
+Types of Databases:
+
+Relational Databases (RDBMS):
+Organize data into tables with rows and columns, establishing relationships between tables using keys.
+Examples: MySQL, PostgreSQL, Oracle Database, Microsoft SQL Server, SQLite.
+
+Non-Relational or NoSQL Databases:
+Designed to handle unstructured or semi-structured data and offer more flexible data models. They don't rely on a fixed schema.
+Examples: MongoDB, Cassandra, Redis, CouchDB, Neo4j.
+
+Other Databases:
+
+Document Stores:
+Store and retrieve semi-structured data in document formats, commonly using JSON or BSON.
+Examples: MongoDB, CouchDB, Elasticsearch.
+
+Key-Value Stores:
+Simplest form of NoSQL databases, storing data as key-value pairs, suitable for quick and straightforward data retrieval.
+Examples: Redis, DynamoDB, Riak.
+
+In-Memory Databases:
+Store and retrieve data entirely in RAM for faster access and lower latency.
+Examples: Redis (can also be considered an in-memory database), SAP HANA.
+
+NewSQL Databases:
+A class of modern relational databases that aim to provide the scalability of NoSQL databases while maintaining ACID properties.
+Examples: Google Spanner, CockroachDB.
+
+Graph Databases:
+Designed for handling data with complex relationships and interconnectedness, often represented as nodes and edges.
+Examples: Neo4j, ArangoDB, Amazon Neptune.
+
+Column-Family Stores (Wide-Column Stores):
+Optimize data storage for querying and retrieving specific columns rather than entire rows.
+Examples: Apache Cassandra, HBase.
+
+
+Which one is best?
+The choice of a database type depends on the specific requirements of the application, the nature of the data, and the desired scalability and performance characteristics. Each type of database has its strengths and weaknesses, and the selection should align with the specific use case and goals of the project.
+
+
+
+Difference B/W Relational Databses & Non-Relational Databases:
+
+Relational databases (RDBMS) and non-relational databases (NoSQL) differ in their data models, schema flexibility, and use cases. Here are some key differences between the two:
+
+1. Data Model:
+
+Relational Database:
+Organizes data into tables with predefined columns and data types.
+Enforces a fixed schema, and data must conform to this structure.
+Establishes relationships between tables using keys (primary and foreign keys).
+
+Non-Relational Database (NoSQL):
+Employs various data models, including document-oriented, key-value pairs, graph, column-family, etc.
+Offers flexibility in data representation, allowing for dynamic and varying schemas.
+Does not necessarily rely on the traditional table-based structure.
+
+2. Schema:
+Relational Database:
+Enforces a rigid, predefined schema.
+Changes to the schema can be complex and may require downtime for migration.
+
+Non-Relational Database (NoSQL):
+Offers dynamic schema, allowing for more flexibility.
+New fields can be added to records without affecting existing records.
+
+3. Scalability:
+
+Relational Database:
+Vertical scaling (adding more resources to a single server) is a common approach and is easy to accomplish, however horizontal scaling is complex to achieve.
+May have limitations in handling massive amounts of data and high transaction rates.
+
+Non-Relational Database (NoSQL):
+Horizontal scaling (adding more servers to a distributed system) is often more straightforward.
+Suited for handling large volumes of data and high levels of concurrent transactions.
+
+4. Use Cases:
+Relational Database:
+Well-suited for applications with complex relationships and structured data.
+Commonly used in traditional business applications, financial systems, and applications where ACID properties are crucial.
+
+Non-Relational Database (NoSQL):
+Suited for scenarios with dynamic or evolving schemas, unstructured or semi-structured data, and where horizontal scalability is important.
+Commonly used in web applications, big data processing, real-time applications, and scenarios where flexible data models are needed.
+
+5. Query Language:
+
+Relational Database:
+Typically uses SQL (Structured Query Language) for querying and manipulating data.
+Supports complex queries involving multiple tables.
+
+Non-Relational Database (NoSQL):
+Query languages vary between different types of NoSQL databases.
+Some NoSQL databases use specialized query languages tailored to their data models.
+
+6. ACID Properties:
+
+Relational Database:
+Adheres to ACID properties (Atomicity, Consistency, Isolation, Durability) to ensure transactional integrity.
+
+Non-Relational Database (NoSQL):
+May relax some ACID properties to achieve better performance or scalability in certain scenarios. Some NoSQL databases opt for eventual consistency.
+
+Which one is best?
+In summary, the choice between a relational and a non-relational database depends on the specific requirements of the application, the nature of the data, and scalability needs. Relational databases are well-established and suitable for structured data with complex relationships, while non-relational databases offer more flexibility and scalability for scenarios with dynamic or evolving data structures.
