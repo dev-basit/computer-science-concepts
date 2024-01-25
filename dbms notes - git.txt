@@ -592,3 +592,112 @@ Optimize for performance considerations.
 
 Outcome: 
 A detailed physical model that addresses the specifics of data storage, indexing, and performance optimization for the chosen DBMS.
+
+
+##
+ERD:
+
+##
+Relational Modal:
+The relational model is a database model that represents data as tables with rows and columns, where each table is a relation, and each row in the table is a tuple (record) containing attributes (fields or columns). This model was introduced by Edgar F. Codd in 1970, and it has become the dominant data model for database management systems (DBMS).
+
+Customers Table:
+
++--------------------+-----------------------------+----------------------+
+| CustomerID |   CustomerName   |  City		  |
++-------------------+------------------------------+-----------------------+
+|    101    	|   John Doe	   	|  NYC   	   |
+|    102    	|   Jane Smith  	|  LA    		   |
+|    103    	|   Bob Johnson 	|  Chicago 	   |
++--------------------+--------------+--------------+----------------------+
+
+
+##
+Entity:
+An entity is a real-world object or concept that has an existence and can be uniquely identified. For example, in a university database, entities could include students, courses, and professors.
+Represented as a rectangle in an ERD, with the entity's name inside the rectangle.
+    
+Entity Type:
+An entity type is a collection of entities that share common characteristics or properties. It is a classification or category of entities. For example, "Student" and "Professor" are entity types.
+
+Entity Set:
+An entity set is a collection of entities of the same entity type. It represents all instances of a particular entity type at a specific point in time. For instance, the set of all students currently enrolled in a university is an entity set.
+
+Strong Entity:
+A strong entity is an entity that has a primary key attribute, and its existence is independent of other entities. It can be uniquely identified by its own attributes.
+Represented as a single rectangle. 
+
+Weak Entity:
+A weak entity is an entity that does not have a primary key attribute of its own. Its existence is dependent on the existence of another entity, known as the "owning" or "parent" entity. A weak entity is identified by a partial key, which includes a partial set of attributes and relies on the owning entity for identification.
+Represented as a double rectangle. A double diamond represents the identifying relationship with the owner entity.
+
+Attributes:
+Attributes are properties or characteristics that describe aspects of an entity or relationship. For a "Student" entity, attributes could include "StudentID," "Name," and "DateOfBirth."
+Represented as ovals connected to the entity rectangle. Attributes are listed inside these ovals.
+
+
+Domain:
+A domain is the set of all possible values that an attribute can take. For example, the domain of the "DateOfBirth" attribute might be all valid dates.
+
+
+# Types of Attributes:
+
+Single-valued Attribute:
+An attribute that holds a single value for each entity.
+Represented by an oval connected to the entity rectangle.
+
+Multivalued Attribute:
+An attribute that can hold multiple values for each entity.
+Represented by a double oval connected to the entity rectangle.
+
+Simple Attribute:
+An attribute that cannot be divided into sub-parts.
+Represented by a single oval or double oval (for multivalued attributes) connected to the entity rectangle.
+
+Composite Attribute:
+An attribute that can be divided into sub-parts, each with its own meaning.
+Represented by an oval with subparts connected by lines to the main oval. The subparts may be single or multivalued attributes.
+
+Derived Attribute:
+An attribute whose value is derived or calculated based on other attributes.
+Represented by a dashed oval connected to the entity rectangle. The derivation method may be indicated.
+
+Prime Attribute:
+An attribute that is part of the primary key.
+The primary key attributes are usually underlined in ERD.
+
+Non-Prime Attribute:
+An attribute that is not part of the primary key.
+Non-prime attributes are not underlined in ERD.
+
+Key:
+A key is an attribute or combination of attributes that uniquely identifies an entity within an entity set. A key is crucial for distinguishing one entity from another. In a "Student" entity set, the "StudentID" might be a key.
+Primary Key:
+A primary key is a unique identifier for a record in a table. It uniquely identifies each row, and no two rows can have the same primary key value.
+
+Rules:
+Primary key values cannot be NULL.
+Each table can have only one primary key.
+Purpose: Uniquely identifies each record in a table.
+
+Foreign Key:
+A foreign key is a column or set of columns in one table that refers to the primary key in another table. It establishes a relationship between the two tables.
+
+Rules:
+Values in the foreign key must match values in the primary key of the referenced table.
+Foreign key values can be NULL if the relationship is optional.
+Purpose: Maintains referential integrity between related tables.
+
+Candidate Key:
+A candidate key is a set of one or more columns that can uniquely identify a record in a table. It is a potential candidate for being the primary key.
+
+Rules:
+Candidate keys must be unique.
+They must not contain NULL values.
+Purpose: Provides alternative choices for the primary key.
+
+Super Key:
+A super key is a set of one or more columns that, taken together, can uniquely identify a record in a table. It may include more columns than necessary to form a minimal candidate key.
+Example: If a table has columns A, B, and C, then {A, B} and {A, B, C} are both super keys.
+Purpose: Represents all possible combinations of columns that uniquely identify records.
+
