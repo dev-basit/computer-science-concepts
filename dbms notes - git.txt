@@ -701,3 +701,143 @@ A super key is a set of one or more columns that, taken together, can uniquely i
 Example: If a table has columns A, B, and C, then {A, B} and {A, B, C} are both super keys.
 Purpose: Represents all possible combinations of columns that uniquely identify records.
 
+
+##
+Constraints:
+Domain Constraint:
+A domain constraint defines the allowable values for an attribute. It specifies the range of valid data values that a particular attribute can take.
+Example: If an attribute "Age" has a domain constraint specifying that it must be a positive integer, any attempt to insert a negative number or a non-integer value would violate the domain constraint.
+Purpose: Ensures that data adheres to predefined rules for valid values in specific attributes.
+
+Key Constraint or Unique Constraint:
+A key constraint ensures the uniqueness of values within a specified column or combination of columns. It can be applied to a primary key or a unique key.
+Example: If a table has a unique constraint on the "Email" column, each email address must be unique within that column.
+Purpose: Prevents duplication of values in specified columns, maintaining data integrity.
+
+Entity Integrity Constraint:
+Entity integrity ensures that each row (tuple) in a table is uniquely identified by a primary key, and also null value cannot be acceptable. It's a specific case of the key constraint applied to the primary key column(s).
+Example: In a "Customers" table, the entity integrity constraint ensures that each customer is uniquely identified by the primary key "CustomerID."
+Purpose: Guarantees the uniqueness and non-null nature of primary key values for each entity in a table.
+
+Referential Entity Integrity Constraint:
+This constraint is a specific type of referential integrity constraint that ensures the consistency of relationships between tables. It requires that foreign key values in one table correspond to primary key values in another table.
+Example: If a "Orders" table has a foreign key "CustomerID" referring to the "Customers" table, the referential entity integrity constraint ensures that every "CustomerID" in the "Orders" table corresponds to a valid "CustomerID" in the "Customers" table.
+Purpose: Maintains the integrity of relationships between tables by ensuring that foreign key values reference valid primary key values in related tables.
+
+
+##
+Relationship:
+A relationship is a meaningful association or link between two or more entities. It represents a connection that exists when entities are related in some way.
+In an ERD, a relationship is typically represented by a diamond shape connecting two or more entities. The diamond contains a label that describes the nature of the relationship.
+
+Example:
+Consider entities "Student" and "Course." A relationship between them could be "Enroll," representing the association between students and the courses they are enrolled in. In this example, the "Enroll" relationship connects the "Student" and "Course" entities.
+
+Unary Relationship:
+A unary relationship involves a single entity type. In other words, it's a relationship where an entity is related to itself.
+Example: Consider an "Employee" entity with a unary relationship "Manages" to represent the relationship where an employee manages other employees. In this case, the "Manages" relationship is unary because it connects instances of the same entity type (Employee).
+
+Binary Relationship:
+A binary relationship involves two distinct entity types. It is the most common type of relationship in relational database design.
+Example: In a university database, a binary relationship "Enroll" might exist between the "Student" and "Course" entities, indicating that students enroll in courses. The "Enroll" relationship connects instances of the "Student" entity to instances of the "Course" entity.
+
+Ternary Relationship:
+A ternary relationship involves three distinct entity types. It represents a more complex association where instances of three entities are related to each other.
+Example: In a hospital database, a ternary relationship "Admission" might exist between the "Patient," "Doctor," and "Room" entities, indicating the admission of a patient to a specific room under the care of a particular doctor.
+
+
+
+##
+Degree OR Degree of Relationship:
+The degree of a relationship in a database refers to the number of entities participating in a relationship.
+Example: In a binary relationship between two entities A and B, the degree is 2 (binary).
+
+Degree of Cardinality:
+Refers to the number of entities or occurrences involved in a cardinality specification.
+Example: In a "one-to-many" relationship, the degree of cardinality is 2, as it involves two entities (one from each side).
+
+Cardinality or Cardinality Ratio or Cardinality Mapping:
+Cardinality defines the maximum number of occurrences of one entity that can be associated with the maximum number of occurrences of another entity in a relationship.
+Example: In a "one-to-many" relationship, the cardinality from the "one" side is 1, and from the "many" side is many.
+
+
+Cardinality Ratio:
+Describes the proportion of entities participating in a relationship based on the specified cardinality.
+Example: In a "one-to-many" relationship, the cardinality ratio is 1:N, indicating one occurrence on one side can be associated with many occurrences on the other side.
+
+
+One-to-One (1:1):
+Each instance on one side of the relationship is related to only one instance on the other side, and vice versa.
+Representation: "One-to-One" or "1:1."
+Example: One student has one roll no. Or One Citizen has on CNIC
+
+One-to-Many (1:N):
+Each instance on one side of the relationship is related to multiple instances on the other side, but each instance on the other side is related to only one instance on the first side.
+Representation: "One-to-Many" or "1:N."
+
+Many-to-One (M:1):
+Multiple instances on one side of the relationship are related to a single instance on the other side.
+Representation: "Many-to-One" or "M:1." (Reverse of One-to-Many)
+
+Many-to-Many (M:N):
+Multiple instances on one side of the relationship can be related to multiple instances on the other side.
+Representation: "Many-to-Many" or "M:N."
+
+
+
+# Participation or Existence:
+In the context of Entity-Relationship Diagrams (ERDs) and database design, participation or existence refers to the degree to which entities in a relationship are involved or required. 
+
+There are two main types of participation: total participation and partial participation.
+
+Total Participation:
+Total participation (also known as existence dependency) occurs when every entity in an entity set must participate in the relationship. In other words, an entity on one side of the relationship must be associated with at least one entity on the other side.
+Representation:
+In an ERD, total participation is typically indicated by double lines connecting the participating entity to the relationship line.
+
+Partial Participation:
+Partial participation occurs when some entities in an entity set may choose not to participate in the relationship. It allows for entities to be independent of the relationship and not necessarily associated with entities on the other side.
+Representation: In an ERD, partial participation is indicated by a single line connecting the participating entity to the relationship line.
+
+
+##
+Extended Entity-Relationship (ER) features:
+Extended Entity-Relationship (ER) features, also known as Enhanced Entity-Relationship features, are additions to the traditional ER model designed to provide more expressive power in capturing complex relationships and constraints in a database. These extensions help in modeling more sophisticated database scenarios. Some of the commonly used extended ER features include:
+
+Subtypes and Supertypes (Inheritance):
+Allows entities to inherit attributes from a higher-level entity, creating a subtype-supertype relationship.
+Use Case: Useful when entities share common attributes but also have unique attributes.
+Representation: Represented by a triangle connecting the subtype entities to the supertype entity.
+
+Specialization and Generalization:
+Similar to subtypes and supertypes, specialization and generalization allow the modeling of hierarchies within entities.
+Use Case: Useful when entities have common attributes but may also have specialized attributes based on their roles or characteristics.
+Representation: Similar to subtypes and supertypes, represented by a triangle connecting the specialized entities to the generalized entity.
+
+Union Types:
+Enables an entity to be a member of more than one entity type.
+Use Case: Useful when an entity exhibits different characteristics or attributes based on its role in various contexts.
+Representation: Represented by combining different entity types into a single entity with attributes from all participating entity types.
+
+Aggregation:
+Represents a relationship between an entity and a relationship set.
+Use Case: Useful when a relationship between entities is itself an entity with additional attributes.
+Representation: Represented by a diamond shape connecting an entity to a relationship set.
+
+Attributes Inheritance:
+Allows attributes to be inherited by entities in subtypes.
+Use Case: Useful when certain attributes are common to all entities in a subtype.
+Representation: Attributes are specified in the supertype, and subtypes inherit these attributes.
+
+Constraint Disjointness:
+Specifies that an entity can only be a member of one subtype within a set of subtypes.
+Use Case: Useful when ensuring that an entity belongs to only one subtype within a hierarchy.
+Representation: Indicated by "disjoint" notation in the subtype-supertype relationship.
+
+Constraint Completeness:
+Specifies whether an entity must belong to at least one subtype within a set of subtypes.
+Use Case: Useful when ensuring that an entity participates in the specialization hierarchy.
+Representation: Indicated by "complete" or "incomplete" notation in the subtype-supertype relationship.
+
+
+
