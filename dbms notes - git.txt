@@ -841,3 +841,153 @@ Representation: Indicated by "complete" or "incomplete" notation in the subtype-
 
 
 
+##
+Normalization:
+Normalization is the process of organizing and structuring data in a relational database to reduce redundancy, eliminate data anomalies, and improve data integrity. The goal of normalization is to ensure that data is stored efficiently without unnecessary duplication and to maintain consistency and accuracy across the database.
+
+The normalization process involves breaking down large tables into smaller, related tables and organizing the data in a way that adheres to specific rules or normal forms. 
+
+Stages:
+First Normal Form (1NF):
+Second Normal Form (2NF):
+Third Normal Form (3NF):
+ 
+
+Problems without Normaliztion /Anomalies (Insert, Update, Delete):
+Without normalization, a database may suffer from several problems, often referred to as anomalies, which can impact data integrity, consistency, and efficiency. Here are three common types of anomalies that can occur without normalization:
+
+Insertion Anomalies:
+Insertion anomalies occur when adding new data to the database leads to difficulties or inconsistencies.
+Example: In a denormalized table where customer information and order details are stored together, attempting to insert a new order for a customer who hasn't made any previous orders results in incomplete or redundant information.
+
+Update Anomalies:
+Update anomalies arise when updating data in the database leads to inconsistencies or requires modifications in multiple places.
+Example: In a denormalized table where customer addresses are stored with each order, if a customer moves and their address needs to be updated, it must be updated in multiple rows (orders) leading to potential errors or inconsistencies.
+
+Deletion Anomalies:
+Deletion anomalies occur when removing data from the database results in unintended loss of related information.
+Example: In a denormalized table where customer information is repeated for each order, deleting a single order might inadvertently remove the only record of a customer, leading to the loss of customer details.
+
+Normalization addresses these anomalies by breaking down tables into smaller, related tables and organizing the data according to specific rules (normal forms). 
+
+# Why We Need Normalization:
+Minimize Redundancy & Anamolies: By storing data in a structured and non-redundant way, normalization reduces the need for duplicate information.
+
+Improve Consistency: Normalization ensures that data dependencies are well-defined, reducing the likelihood of inconsistencies and anomalies.
+
+Facilitate Maintenance: Normalized databases are typically easier to maintain and modify, as changes are localized to specific tables.
+
+While normalization provides these benefits, it's essential to strike a balance and consider the specific requirements of the application. Over-normalization may lead to more complex query structures and could impact performance, so the level of normalization should be chosen based on the specific needs of the database system.
+
+#
+Terms Used in Normalization:
+
+# Functional dependency:
+Functional dependency defines how the value of one attribute uniquely determines the value of another attribute. In other words, if the value of one attribute (or set of attributes) uniquely determines the value of another attribute, a functional dependency exists.
+
+
+The notation for a functional dependency is represented as X → Y, where X and Y are sets of attributes, and the arrow (→) signifies that the values of X uniquely determine the values of Y.
+
+If X → Y holds, it means that for any two tuples (rows) in the relation with the same values for X, the corresponding values for Y must also be the same.
+Here are a few examples to illustrate functional dependencies:
+
+A functional Dependency A→B always holds if A is key in the relation R and A,B are the attributes or set of attributes.
+
+Product Table:
+In a "Product" table with attributes: {ProductID, ProductName, Price}.
+If ProductID uniquely determines ProductName, you can express it as ProductID → ProductName.
+If ProductID uniquely determines Price, you can express it as ProductID → Price.
+Functional dependencies play a crucial role in the normalization process. The process of normalization involves identifying and eliminating redundant data by ensuring that the database schema satisfies certain normal forms based on functional dependencies. 
+
+# Types of Functional Dependency:
+Trivial Functional Dependencies & Non-Trivial Functional Dependencies:
+
+
+Trivial Functional Dependencies:
+A functional dependency X → Y is said to be trivial if and only if Y ⊆ X. Thus, if RHS of a functional dependency is a subset of LHS, then it is called a trivial functional dependency.
+
+Non-Trivial Functional Dependencies:
+A functional dependency X → Y is said to be non-trivial if and only if Y ⊄ X.
+Thus, if there exists at least one attribute in the RHS of a functional dependency
+that is not a part of LHS, then it is called a non-trivial functional dependency.
+
+
+# Closure of an Attribute:
+Closure of an attribute refers to the complete set of attributes that are functionally determined by the given attribute and function dependencies.
+
+The closure of an attribute set is denoted by the symbol '+'. If we have a set of attributes A, the closure of A, denoted as A+, represents all the attributes that are functionally dependent on A.
+
+
+Finding Closure:
+The closure is calculated based on a set of functional dependencies. Here's how the closure operation is typically defined:
+
+Closure of a Single Attribute:
+If X is a single attribute, X+ includes X and all attributes that are functionally dependent on X.
+
+Closure of a Set of Attributes (X):
+If X is a set of attributes, X+ includes X and all attributes that can be functionally determined by the attributes in set X, according to the given set of functional dependencies.
+The process of computing the closure involves repeatedly applying the given functional dependencies until no new attributes can be added to the closure.
+
+Example:
+Consider a set of functional dependencies:
+
+A → B
+B → C
+C → D
+
+If we want to find the closure of the attribute set {A}, we perform the following calculations:
+
+A+ = {A} (initially)
+A+ = {A, B} (applying A → B)
+A+ = {A, B, C} (applying B → C)
+A+ = {A, B, C, D} (applying C → D)
+
+Therefore, the closure of {A} under the given set of functional dependencies is {A, B, C, D}.
+
+Closure operations are essential for determining the attributes that are functionally dependent on a given set of attributes, which is crucial in the normalization process of a relational database.
+
+
+
+
+#
+Stages:
+
+First Normal Form (1NF):
+Requirements:
+There should be no single column or attribute which contains multiple values. All the columns should contain single ( atomic ) values.
+
+Example: 
+If a table has a column or attribute with a list of multiple phone numbers, it is not in 1NF. To achieve 1NF, each phone number should be inside a separate table and linked via foreign key to the original table.
+
+Second Normal Form (2NF):
+Requirements:
+Must be in 1NF.
+There should be no any non-prime attribute which is partially dependent on the proper subset (part) of the key. 
+OR
+All non-prime attributes fully functionally dependent on key.
+
+Partial dependency: Part of the key uniquely determines non-prime attributes.
+
+In simple words, every table or relation should describe one entity, and every column in that table should describe that entity.
+
+Example: 
+If a table has a composite primary key (e.g., {StudentID, CourseID}) and non-prime attributes (e.g., Instructor) that depend on only one part of the key (e.g., CourseID), it is not in 2NF.
+
+Third Normal Form (3NF):
+Requirements:
+Must be in 2NF.
+There should be no any non-prime attribute in relation R or table which is transitively dependent on the key of relation or table.
+OR
+All the attributes in relation R or table is functionaly determined only by the candidate keys of that relation R or table, and not by any non-prime attributes.
+OR 
+A column in a table should not be derived other columns except candidate keys.
+
+Example: If a table has a non-prime attribute (e.g., InstructorOffice) that depends on another non-prime attribute (e.g., Instructor), it is not in 3NF.
+
+
+Boyce Codd Normal Form (BCNF):
+A relation R is said to be in BCNF if it is already in 3NF and for every functional dependency A→B, A should be super key in R.
+
+
+
+
