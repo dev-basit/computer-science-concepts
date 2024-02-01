@@ -991,3 +991,91 @@ A relation R is said to be in BCNF if it is already in 3NF and for every functio
 
 
 
+##
+Decomposition of a Relation:
+The process of breaking up or dividing a single relation into two or more sub relations is called the decomposition of a relation.
+
+# Properties of Decomposition: 
+Lossless Decomposition & Dependency Preservation: 
+
+Lossless Decomposition:
+Lossless decomposition ensures no information is lost from the original relation during decomposition. 
+When the sub relations are joined back, the same relation is obtained that was
+Decomposed.
+
+Dependency Preservation: 
+Dependency preservation ensures none of the functional dependencies that hold on the original relation are lost.  The sub relations still hold or satisfy the functional dependencies of the original relation.
+
+Note:
+Upto 3NF all decomposition are lossless. BCNF may or may not give lossless decomposition.
+Upto 3NF all decomposition are dependency preserving. BCNF may or may not give dependency preserving decomposition.
+
+
+# Types of Decomposition:
+Lossless Join Decomposition & Lossy Join Decomposition:
+
+Lossless Join Decomposition:
+Consider there is a relation R which is decomposed into sub relations R1, R2, …., Rn.
+This decomposition is called lossless join decomposition when the join of the sub
+relations results in the same relation R that was decomposed.
+For lossless join decomposition, we always have- R1 ⋈ R2 ⋈ R3 ……. ⋈ Rn = R
+where ⋈ is a natural join operator
+
+Lossy Join Decomposition:
+Consider there is a relation R which is decomposed into sub relations R1, R2, ….,Rn. This decomposition is called lossy join decomposition when the join of the subrelations does not result in the same relation R that was decomposed.
+For lossy join decomposition, we always have- R1 ⋈ R2 ⋈ R3 ……. ⋈ Rn ⊃ R
+where ⋈ is a natural join operator.
+
+
+##
+Transaction:
+In databases, a transaction is a collection of one or more operations ( SQL statements ) that are executed as a single, indivisible unit. 
+
+Operations in Transaction:
+Read Operation - Read(A) instruction will read the value of ‘A’ from the database and
+will store it in the buffer in main memory.
+Write Operation – Write(A) will write the updated value of ‘A’ from the buffer to the
+database.
+
+# Transaction States / Life Cycle of Transaction:
+A database transaction typically goes through several states during its execution. The states of a transaction are often described using the following terms:
+
+Active:
+Description: The initial state when the transaction is initiated and is actively executing its operations.
+Actions: The transaction performs read and write operations on the database.
+
+Partially Committed:
+Description: The state where the transaction has executed all its operations successfully, and it is about to be committed.
+Actions: The transaction signals its intention to commit, but the changes are not yet made permanent.
+
+Committed:
+Description: The final state where the transaction has been successfully completed, and its changes are made permanent in the database.
+Actions: The changes made by the transaction are saved to the database, and the transaction is considered successful.
+
+Failed:
+Description: The state where the transaction encounters an error or failure during its execution.
+Actions: The transaction is rolled back, and any changes made by the transaction are undone. It returns to the Active state.
+
+Aborted/Rolled Back:
+Description: The state where the transaction is explicitly rolled back or aborted due to a detected error or as a result of user intervention.
+Actions: Any changes made by the transaction are undone, and the transaction is terminated.
+
+Terminated:
+Description: The final state after the transaction has been committed or rolled back. It indicates the completion of the transaction's lifecycle.
+Actions: The transaction is either successfully committed, or its changes are undone (rolled back), and resources associated with the transaction are released.
+
+
+
+
+# ACID Properties / Properties of Transaction:
+The fundamental properties of a transaction are often referred to as the ACID properties which are atomicity, consistency, isolation and durability.
+
+Atomicity: A transaction is atomic, meaning it is treated as a single, indivisible unit of work. Either all the changes made by the transaction are committed to the database, or none of them are.
+
+Consistency: A transaction ensures that the database transitions from one consistent state to another. If the database is in a consistent state before the transaction begins, it will remain consistent after the transaction is completed.
+
+Isolation: Transactions are isolated from each other, meaning the execution of one transaction does not interfere with the execution of other transactions. Each transaction is executed as if it is the only transaction in the system.
+
+Durability: Once a transaction is committed, its changes become permanent and survive any subsequent failures. Even in the event of a system crash, the changes made by committed transactions are not lost.
+
+
