@@ -1079,3 +1079,73 @@ Isolation: Transactions are isolated from each other, meaning the execution of o
 Durability: Once a transaction is committed, its changes become permanent and survive any subsequent failures. Even in the event of a system crash, the changes made by committed transactions are not lost.
 
 
+##
+Concurrency:
+Concurrency in the context of databases refers to the ability of multiple transactions to execute in overlapping periods of time. 
+
+Why we need concurrency?
+To improve throughput
+To improve resource utilization
+
+# Problems Created by Concurrency or Concurrent Transactions:
+Lost Updates, Dirty Reads, Non-Repeatable Reads, and Phantom Reads:
+
+Lost Updates, Dirty Reads, Non-Repeatable Reads, and Phantom Reads are phenomena related to concurrency in databases, and they represent different types of issues that can occur when multiple transactions access and modify the same data concurrently.
+
+1. Lost Updates (W-W):
+Lost updates occur when two transactions read the same data concurrently, and both transactions attempt to update the data. The changes made by one transaction are overwritten by the changes made by the other, resulting in data loss.
+
+Solutions:
+
+Read Uncommitted: No mechanism to prevent lost updates. Allowing uncommitted changes to be read by other transactions.
+Read Committed: Uses shared locks during reads, preventing other transactions from updating the same data simultaneously.
+Repeatable Reads and Serializable: Use stricter locking mechanisms to prevent concurrent updates to the same data.
+
+2. Dirty Reads (W-R):
+Dirty reads occur when one transaction reads data that has been modified by another transaction but has not been committed. If the modifying transaction is rolled back, the data read by the first transaction becomes invalid.
+
+Solutions:
+
+Read Uncommitted: Allows dirty reads as it doesn't enforce any locks or isolation.
+Read Committed: Prevents dirty reads by using shared locks during reads, ensuring that only committed data is read.
+Repeatable Reads and Serializable: Use stricter locking mechanisms to prevent dirty reads.
+
+3. Non-Repeatable Reads (R-W):
+Non-repeatable reads happen when a transaction reads the same data twice, but the data has been modified or deleted by another transaction between the two reads.
+
+Solutions:
+
+Read Uncommitted: Allows non-repeatable reads as it doesn't enforce any locks or isolation.
+Read Committed: Uses shared locks during reads to prevent other transactions from modifying the data concurrently.
+Repeatable Reads: Uses stricter locks to prevent other transactions from modifying the data until the end of the transaction.
+Serializable: Uses the strictest locking mechanism, preventing any modifications to the data until the transaction is complete.
+
+4. Phantom Reads:
+Phantom reads occur when a transaction reads a set of rows that satisfy a certain condition, but between subsequent reads, other transactions insert, update, or delete rows that also satisfy the same condition. As a result, the second read includes rows that were not present in the first read.
+
+Solutions:
+
+Read Uncommitted: Allows phantom reads as it doesn't enforce any locks or isolation.
+Read Committed: Uses shared locks during reads, preventing other transactions from inserting new rows that satisfy the condition.
+Repeatable Reads: Uses stricter locks to prevent other transactions from inserting or deleting rows that satisfy the condition until the end of the transaction.
+Serializable: Uses the strictest locking mechanism to prevent any changes to the data that satisfy the condition until the transaction is complete.
+
+# Isolation Levels and Solutions:
+Read Uncommitted:
+Behavior: Allows all four phenomena (Lost Updates, Dirty Reads, Non-Repeatable Reads, Phantom Reads).
+Solution: No mechanisms are in place to prevent these issues.
+
+Read Committed:
+Behavior: Prevents Dirty Reads. Allows Lost Updates, Non-Repeatable Reads, and Phantom Reads.
+Solution: Uses shared locks during reads to prevent dirty reads. Doesn't prevent other phenomena.
+
+Repeatable Reads:
+Behavior: Prevents Dirty Reads and Non-Repeatable Reads. Allows Lost Updates and Phantom Reads.
+Solution: Uses stricter locks to prevent dirty and non-repeatable reads. Doesn't prevent other phenomena.
+
+Serializable:
+Behavior: Prevents Dirty Reads, Non-Repeatable Reads, and Phantom Reads. Allows Lost Updates.
+Solution: Uses the strictest locking mechanism to prevent dirty, non-repeatable reads, and phantom reads. Doesn't prevent lost updates.
+
+
+
