@@ -1149,3 +1149,61 @@ Solution: Uses the strictest locking mechanism to prevent dirty, non-repeatable 
 
 
 
+
+##
+Schedule:
+The order in which the operations of multiple transactions appear for execution is called schedule.
+
+# Types:
+Serial Schedules, Non-Serial Schedules
+
+Serial Schedules:
+All the transactions execute serially one after the other. When one transaction is being executed, no other transaction is allowed to execute.
+Serial schedules are always- Consistent, Recoverable, Cascadeless and Strict. However, it may lead to low utilization of resources and longer execution times.
+
+Non-Serial Schedules (Concurrent Schedules):
+Multiple transactions execute concurrently in overlapping periods of time. Operations of all the transactions are interleaved or mixed with each other.
+Non-serial schedules are not always- Consistent, Recoverable, Cascadeless and
+Strict. However, it leads to better utilization of resources and higher throughput.
+
+# Serializability:
+Some non-serial schedules may lead to inconsistency of the database. Serializability is a concept that helps to identify which non-serial schedules are correct and will maintain the consistency of the database.
+
+# Serializable Schedules:
+A non-serial schedule (concurrent schedule) is serializable if it produces the same results as some serial execution of the transactions.
+OR
+If a given non-serial schedule of ‘n’ transactions is equivalent to some serial
+schedule of ‘n’ transactions, then it is called a serializable schedule.
+Serializable schedules are always- Consistent, Recoverable, Cascadeless and
+Strict.
+
+# Types of Serializability: (How to check equivalency?)
+Conflict Serializability - If a given non-serial schedule can be converted into a serial
+schedule by swapping its non-conflicting operations, then it is called a conflict
+serializable schedule.
+
+View Serializability - If a given non-serial schedule is found to be viewed as equivalent to some serial schedule, then it is called a view serializable schedule.
+
+
+# Non-Serializable Schedules:
+A non-serial schedule (concurrent schedule) which is not serializable is called a non-serializable schedule. 
+A non-serializable schedule is not guaranteed to produce the same effect as produced by some serial schedule on any consistent database.
+Non-serializable schedules- may or may not be consistent, may or may not be
+recoverable.
+
+#Types of Non-Serializable Schedules:
+Irrecoverable Schedules:
+In a given schedule, if any transaction performs a dirty read operation from an uncommitted transaction and commits before the transaction from which it has read the value then such a schedule is known as an Irrecoverable Schedule.
+
+Recoverable Schedules:
+In a given schedule, if any transaction performs a dirty read operation from an uncommitted transaction and its commit operation is delayed till the uncommitted transaction either commits or roll backs then such a schedule is known as a Recoverable Schedule.
+
+# Types of Recoverable Schedules:
+Cascading Schedule - If in a schedule, failure of one transaction causes several other
+dependent transactions to rollback or abort, then such a schedule is called as a
+Cascading Schedule or Cascading Rollback or Cascading Abort.
+
+Cascadeless Schedule - If in a schedule, a transaction is not allowed to read a data item until the last transaction that has written it is committed or aborted, then such a
+schedule is called as a Cascadeless Schedule.
+
+Strict Schedule - If in a schedule, a transaction is neither allowed to read nor write a data item until the last transaction that has written it is committed or aborted, then such a schedule is called as a Strict Schedule.
