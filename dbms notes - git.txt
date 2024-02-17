@@ -1207,3 +1207,43 @@ Cascadeless Schedule - If in a schedule, a transaction is not allowed to read a 
 schedule is called as a Cascadeless Schedule.
 
 Strict Schedule - If in a schedule, a transaction is neither allowed to read nor write a data item until the last transaction that has written it is committed or aborted, then such a schedule is called as a Strict Schedule.
+
+
+
+##
+Concurrency Control Protocols:
+Concurrency Control Protocols are mechanisms used in Relational Database Management Systems (RDBMS) to manage access to shared data by multiple transactions to ensure data consistency and integrity. 
+Two common types of concurrency control protocols are Lock-Based Protocols and Timestamp-Based Protocols.
+
+# Lock-Based Protocols:
+Basic Idea: Transactions request and obtain locks on data items to prevent other transactions from accessing the same data concurrently.
+
+Types of Locks:
+Shared Lock (S): Allows multiple transactions to read a data item simultaneously.
+Exclusive Lock (X): Grants exclusive access to a single transaction for both reading and writing.
+
+Protocols:
+Two-Phase Locking (2PL): Transactions acquire locks in two phases (growing phase and shrinking phase), and once a transaction releases a lock (shrinking phase), it cannot acquire any new locks.
+Strict Two-Phase Locking: Transactions hold all locks until the commit point, preventing any interference from other transactions.
+
+# Timestamp-Based Protocols:
+Basic Idea: Transactions are assigned unique timestamps, and the order of execution is determined based on these timestamps.
+
+Timestamp Types:
+Read Timestamp (RTS): The timestamp when a transaction reads a data item.
+Write Timestamp (WTS): The timestamp when a transaction writes a data item.
+
+Protocols:
+Thomas Write Rule: A transaction T1 can overwrite a data item written by T2 if and only if TS(T1) > TS(T2).
+Thomas Read Rule: A transaction T1 can read a data item written by T2 if and only if TS(T1) > TS(T2).
+
+# Comparison:
+Lock-Based Protocols: Focus on controlling access through locks, ensuring that transactions hold the appropriate locks to access data.
+Timestamp-Based Protocols: Use timestamps to order transactions and determine the validity of read and write operations.
+
+Advantages:
+Lock-Based Protocols: Simpler to implement, more intuitive for certain scenarios.
+Timestamp-Based Protocols: Provides better performance in situations with low contention.
+
+Considerations:
+Deadlocks: Both protocols need to handle potential deadlocks, where transactions are waiting for each other indefinitely.
